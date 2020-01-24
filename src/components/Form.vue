@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Form",
   data() {
@@ -65,7 +66,7 @@ export default {
     };
   },
   methods: {
-    validateForm(e) {
+    async validateForm(e) {
       this.errors = [];
       if (this.category == "") {
         this.errors.push("Category required");
@@ -86,6 +87,21 @@ export default {
       }
 
       e.preventDefault();
+
+      var formData = {
+        subcategory_id: this.subcategory,
+        desc: this.description
+      };
+
+      try {
+        await axios
+          .post("/api/task/create", formData)
+          /*eslint-disable*/
+          .then(res => console.log("res", res));
+      } catch (err) {
+        /*eslint-disable*/
+        console.log(err);
+      }
     },
     updateSubcategory() {
       var catgoryField = document.getElementById("category");
