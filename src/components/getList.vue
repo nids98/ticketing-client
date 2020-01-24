@@ -1,11 +1,27 @@
 <template>
+<div>
+  <div id="bc">
+    <img class="logo" alt="Vue logo" src="../assets/OYO.png" width=100px>
+    <br/>
+    <input type="text" required placeholder="Enter Technician_id" id="a1" >
+    <!-- <button class="btn">Submit</button> -->
+    <input type="button" class="button button1" value="Submit" v-on:click="gettechid">
+    <br/>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <!-- <getList v-bind:techid="techid" /> -->
+  </div>
+
+<!-- {{techid}} -->
   <a-table
     :columns="columns"
     :dataSource="data"
     :pagination="{ pageSize: 50 }"
     :scroll="{ y: 240 }"
   />
+  </div>
 </template>
+
+
 <script>
 import axios from 'axios';
   const columns = [
@@ -32,7 +48,7 @@ import axios from 'axios';
 
   ];
 
-  const data = [];
+  
 // //   for (let i = 0; i < 100; i++) {
 // //     data.push({
 // //       key: i,
@@ -44,19 +60,82 @@ import axios from 'axios';
 // //   }
 
   export default {
+    // props: ["techid"],
+    name:"getList",
     data() {
       return {
-        data,
+        data:null,
         columns,
+        techid:0,
       };
     },
-    mounted(){
-     axios
-     .get('http://127.0.0.1:8003/api/task/4')
-     .then(response => (this.data =response))
-     }
+    methods:{
+        gettechid(){
+          this.techid = document.getElementById("a1").value;
+
+             axios
+            .get(`http://localhost:8009/api/task/${this.techid}`)
+            .then(response => (this.data =response.data))
+      }
+    }
+     
     
 };
  
 
 </script>
+
+<style scoped>
+
+    #bc {
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 60px;
+      margin-left:15vw;
+      margin-right:20vw;
+      margin-top:-10vh;
+    }
+    .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      /* padding: 16px 32px; */
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      /* margin: 4px 2px; */
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    .button1 {
+      background-color: white; 
+      color: black; 
+      border: 2px solid #4CAF50;
+      margin-left:5vw;
+      width:10vw;
+      height:5vh;
+    }
+
+    .button1:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #a1{
+      width:20vw;
+      height:5vh;
+    }
+
+    .logo{
+      margin-left:42vh;
+      margin-right:37vh;
+      height:25vh;
+      width:25vh;
+    }
+
+</style>
