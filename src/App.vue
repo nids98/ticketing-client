@@ -1,23 +1,25 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <Taskdescription />
   </div>
+  
 </template>
 
 <script>
-import Dashboard from "./components/Dashboard";
+import Taskdescription from './components/Taskdescription.vue'
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
-    Dashboard
+    Taskdescription
   }
 };
+
 </script>
 
 <style>
 #app {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
