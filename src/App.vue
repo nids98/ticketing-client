@@ -1,27 +1,38 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <img src="./assets/oyologo.png" width=200px>
+    <router-view> </router-view>
   </div>
 </template>
 
 <script>
-import Dashboard from "./components/Dashboard";
 
 export default {
-  name: "app",
+  name: 'App',
   components: {
-    Dashboard
+    
   }
-};
+}
 </script>
 
 <style>
 #app {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 100px;
+}
+body, html {
+  height: 100%;
+}
+body {
+ background-image: url("./assets/prick.gif");
+ background-color: #cccccc;
+ height: 100%;
+ background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
