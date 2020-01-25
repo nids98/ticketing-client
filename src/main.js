@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+
 import VueRouter from 'vue-router'
 import Navigation from './components/Navigation'
 import Home from './components/Home'
@@ -10,7 +11,16 @@ import getList from './components/getList.vue'
 
 
 Vue.use(VueRouter)
-Vue.config.productionTip = false
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+//import './custom.scss'
 
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
