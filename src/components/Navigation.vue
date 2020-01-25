@@ -1,5 +1,6 @@
 <template>
   <div>
+    <img src="../assets/oyologo.png" width=200px>
     <h2>Welcome to OYO </h2>
     <l1> World's second largest chain of hotels and homes </l1>
     <br/>
@@ -26,7 +27,7 @@ export default {
         {
           id: 1,
           text: 'View Tasks',
-          page:'/View Tasks'
+          page:'/technician/tasklist'
         },
         {
           id: 2,

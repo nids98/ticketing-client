@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/oyologo.png" width=200px>
     <router-view> </router-view>
+
   </div>
 </template>
 
@@ -28,11 +28,12 @@ body, html {
   height: 100%;
 }
 body {
- background-image: url("./assets/prick.gif");
+ /* background-image: url("./assets/prick.gif"); */
  background-color: #cccccc;
  height: 100%;
  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 </style>
