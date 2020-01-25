@@ -8,14 +8,14 @@
       <div class="alert alert-success" role="alert">
         Ticket Raised successfully
         <img
-          src="close.soon"
+          src
           style="display:none;"
           onerror="(function(el){ setTimeout(function(){ el.parentNode.parentNode.removeChild(el.parentNode); },10000 ); })(this);"
         />
       </div>
     </div>
 
-    <form @submit="validateForm" action method="post">
+    <form @submit="validateAndSubmitForm" action method="post">
       <div class="form-group">
         <label for="category">Select category:</label>
         <select
@@ -66,7 +66,7 @@ export default {
     };
   },
   methods: {
-    async validateForm(e) {
+    async validateAndSubmitForm(e) {
       this.errors = [];
       if (this.category == "") {
         this.errors.push("Category required");
@@ -119,6 +119,8 @@ export default {
         case "utility":
           subcategory = ["water", "electricity"];
           break;
+        default:
+          subcategory = [];
       }
 
       var map = new Object();
