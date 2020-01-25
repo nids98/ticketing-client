@@ -46,28 +46,28 @@
         <tbody>
             <tr>
                 <td style="width: 5%">Task type</td>
-                <td style="width: 20%">Larry the Bird</td>
+                <td style="width: 20%">{{this.task_type}}</td>
             </tr>
             <tr>
                 <td > Description</td>
-                <td class="desc" >  Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird v Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird Larry the Bird </td>
+                <td class="desc" > {{this.desc}} </td>
             </tr>
             <tr>
                 <td>Task creation date</td>
-                <td>{{this.task_type}}</td>
+                <td>{{this.created_at}}</td>
             </tr>
             <tr>
-                <td>Started task on</td>
-                <td>Larry the Bird</td>
+                <td>{{this.update_name}}</td>
+                <td>{{this.updated_at}}</td>
             </tr>
              <tr>
                 <td>Status</td>
-                <td>Larry the Bird</td>
+                <td>{{this.status}}</td>
             </tr>
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+    <button @click="updateStatus" type="button" class="btn btn-primary btn-lg btn-block"  > {{(this.button_name)}}  </button>
 
 </div>
     
@@ -85,22 +85,105 @@ export default {
             status:'',
             created_at:'',
             updated_at:'',
-            update_name:''
+            update_name:'',
+            button_name:''
         };
+    },
+    methods:{
+    
+        async update_var()
+        {
+            try{
+                const res = await axios.get('http://localhost:8000/api/task/desc/1/1');
+                /* eslint-disable */
+                this.task_type=res.data[0].cat_name;
+                this.desc=res.data[0].desc;
+                this.status=res.data[0].status;
+                this.updated_at=res.data[0].updated_at;
+                this.created_at=res.data[0].created_at;
+
+                this.updated_at=this.updated_at.split(" ")[0];
+                this.created_at=this.created_at.split(" ")[0];
+
+                if(this.status==='assigned')
+                { this.update_name='Assigned on'; this.button_name='Mark as Started'; }
+                else if(this.status==='start')
+                {  this.update_name='Started on'; this.button_name='Mark as Completed'; }
+                else
+                {  this.update_name='Completed on';  this.button_name='Already Completed'; }
+
+                //alert(this.button_name);
+
+            }
+            catch(e){
+                //console.log(e);
+            }
+
+            return;
+
+        },
+        async updateStatus(){
+            try
+            { 
+                /* eslint-disable */
+                //axios.put('http://localhost:8000/api/update/4').then((res) => console.log(res));
+                await axios.put('http://localhost:8000/api/update/2');
+                const res = await axios.get('http://localhost:8000/api/task/desc/1/2');
+                /* eslint-disable */
+                this.task_type=res.data[0].cat_name;
+                this.desc=res.data[0].desc;
+                this.status=res.data[0].status;
+                this.updated_at=res.data[0].updated_at;
+                this.created_at=res.data[0].created_at;
+
+                this.updated_at=this.updated_at.split(" ")[0];
+                this.created_at=this.created_at.split(" ")[0];
+
+                if(this.status==='assigned')
+                { this.update_name='Assigned on'; this.button_name='Mark as Started'; }
+                else if(this.status==='start')
+                {  this.update_name='Started on'; this.button_name='Mark as Completed'; }
+                else
+                {  this.update_name='Completed on';  this.button_name='Already Completed'; }
+
+                //alert(this.button_name);
+                //update_var(); 
+            }
+            catch(e)
+            {
+                //kdjsbv
+            }
+        },
+
     },
     async created(){
         try{
-            const res = await axios.get('http://localhost:8000/api/task/desc/1/2');
-            alert(res);
-            this.task_type=res[0].cat_name;
-            this.desc=res[0].desc;
-            this.status=res[0].status;
-            this.updated_at=res[0].updated_at;
+            const res = await axios.get('http://localhost:8000/api/task/desc/4/2');
+            /* eslint-disable */
+            this.task_type=res.data[0].cat_name;
+            this.desc=res.data[0].desc;
+            this.status=res.data[0].status;
+            this.updated_at=res.data[0].updated_at;
+            this.created_at=res.data[0].created_at;
+
+            this.updated_at=this.updated_at.split(" ")[0];
+            this.created_at=this.created_at.split(" ")[0];
+
+            if(this.status==='assigned')
+            { this.update_name='Assigned on'; this.button_name='Mark as Started'; }
+            else if(this.status==='start')
+            {  this.update_name='Started on'; this.button_name='Mark as Completed'; }
+            else
+            {  this.update_name='Completed on';  this.button_name='Already Completed'; }
+
+            //alert(this.button_name);
+
         }
         catch(e){
             //console.log(e);
         }
-    }
+    },
+    
 }
 </script>
 
@@ -115,7 +198,8 @@ export default {
 
     .desc{
         word-wrap: break-word; 
-        text-align: justify;
+        text-align: 'center';
+        /* text-align: justify;  */
     }
 
     .container{
