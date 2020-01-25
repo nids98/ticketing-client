@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <Form />
   </div>
 </template>
 
 <script>
-import Dashboard from "./components/Dashboard";
+import Form from "./components/Form";
 
 export default {
   name: "app",
   components: {
-    Dashboard
+    Form
   }
 };
 </script>
