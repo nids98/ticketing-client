@@ -26,7 +26,7 @@ html {
   height: 100%;
 }
 body {
-  background-image: url("./assets/prick.gif");
+  /* background-image: url("./assets/prick.gif"); */
   background-color: #cccccc;
   height: 100%;
   background-position: center;
