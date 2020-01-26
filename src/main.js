@@ -4,14 +4,18 @@ import VueRouter from 'vue-router'
 import Form from './components/Form/Form'
 import Landing from './components/Dashboard/Landing'
 import PageNotFound from './components/PageNotFound'
+import getlist from './components/getList'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Antd from "ant-design-vue";
+import "ant-design-vue/dist/antd.css";
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
+Vue.use(Antd);
 Vue.config.productionTip = false
 
 const router = new VueRouter({
@@ -21,6 +25,9 @@ const router = new VueRouter({
     },
     {
       path: '/raise-a-ticket', component: Form
+    },
+    {
+      path: '/view-tasks', component: getlist
     },
     {
       path: '*', component: PageNotFound

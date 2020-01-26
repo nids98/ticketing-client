@@ -18,7 +18,7 @@
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
             <b-nav-item href="/raise-a-ticket">Raise a Ticket</b-nav-item>
-            <b-nav-item href="#">View Taks</b-nav-item>
+            <b-nav-item href="/view-tasks">View Taks</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
