@@ -1,30 +1,28 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import Navigation from './components/Navigation'
-import Home from './components/Home'
-import About from './components/About'
-import Contact from './components/Contact'
+import Form from './components/Form/Form'
+import Landing from './components/Dashboard/Landing'
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
-const router = new VueRouter ({
-  routes:[
+const router = new VueRouter({
+  routes: [
     {
-      path: '/', component : Navigation
+      path: '/', component: Landing
     },
     {
-      path: '/home', component : Home
-    },
-    {
-      path: '/about', component : About
-    },
-    {
-      path: '/contact', component : Contact
-    },
+      path: '/raise-a-ticket', component: Form
+    }
   ],
-  mode:"history"
+  mode: "history"
 })
 new Vue({
   router,
