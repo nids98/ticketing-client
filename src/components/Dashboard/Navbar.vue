@@ -17,8 +17,8 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
-            <b-nav-item href="/raise-a-ticket">Raise a Ticket</b-nav-item>
-            <b-nav-item href="/view-tasks">View Taks</b-nav-item>
+            <b-nav-item href="/raise-a-ticket" v-bind:class="{ active: isForm }">Raise a Ticket</b-nav-item>
+            <b-nav-item href="/view-tasks" v-bind:class="{ active: isTask }">View Taks</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
@@ -28,8 +28,20 @@
 
 <script>
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  data() {
+    return {
+      isForm: this.$route.path === "/raise-a-ticket",
+      isTask: this.$route.path === "/view-tasks"
+    };
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+a.nav-link:hover {
+  background-color: rgb(197, 5, 5);
+  color: red;
+  border-radius: 20px;
+}
+</style>
