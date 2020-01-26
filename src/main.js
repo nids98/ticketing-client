@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import Form from './components/Form/Form'
 import Landing from './components/Dashboard/Landing'
+import PageNotFound from './components/PageNotFound'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,6 +21,9 @@ const router = new VueRouter({
     },
     {
       path: '/raise-a-ticket', component: Form
+    },
+    {
+      path: '*', component: PageNotFound
     }
   ],
   mode: "history"
