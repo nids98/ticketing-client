@@ -1,10 +1,15 @@
 <template>
   <div>
-    <Navbar />
     <div id="bc">
       <img class="logo" alt="Vue logo" src="../assets/OYO.png" width="100px" />
       <br />
-      <input type="text" required placeholder="Enter Technician_id" id="a1" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" />
+      <input
+        type="text"
+        required
+        placeholder="Enter Technician_id"
+        id="a1"
+        onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+      />
       <!-- <button class="btn">Submit</button> -->
       <input type="button" class="button button1" value="Submit" v-on:click="gettechid" />
       <br />
@@ -18,7 +23,12 @@
       :dataSource="data"
       :pagination="{ pageSize: 50 }"
       :scroll="{ y: 240 }"
-    />
+    >
+      <template slot="Action" slot-scope="text,record">
+        <a-button type="primary" @click="onTaskClick(record.task_id)">Show Full Description</a-button>
+        <!-- <a href="/technician/tasklist/desc/{{this.data[record.key].task_id}}">Delete</a> -->
+      </template>
+    </a-table>
   </div>
 </template>
 
@@ -45,6 +55,12 @@ const columns = [
   {
     title: "Created_at",
     dataIndex: "created_at",
+    width: 150
+  },
+  {
+    title: "Action",
+    dataIndex: "Action",
+    scopedSlots: { customRender: "Action" },
     width: 150
   }
 ];
@@ -73,10 +89,14 @@ export default {
   methods: {
     gettechid() {
       this.techid = document.getElementById("a1").value;
-
       axios
         .get(`http://localhost:8000/api/task/${this.techid}`)
         .then(response => (this.data = response.data));
+    },
+    onTaskClick(tid) {
+      /* eslint-disable*/
+
+      window.location = "/technician/tasklist/desc/" + this.techid + "/" + tid;
     }
   }
 };
