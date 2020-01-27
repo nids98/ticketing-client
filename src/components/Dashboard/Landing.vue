@@ -2,6 +2,9 @@
   <div>
     <Navbar />
     <div class="center">
+      <div v-if="success">
+        <AlertSuccess />
+      </div>
       <img src="../../assets/dashboard.gif" alt="dashboard" />
       <h2 class="center">Welcome to Ticketing</h2>
       <p class="center">User complaint registration and workforce management system</p>
@@ -11,11 +14,15 @@
 
 <script>
 import Navbar from "./Navbar";
+import AlertSuccess from "../Form/AlertSuccess";
+
 export default {
   name: "Landing",
   components: {
-    Navbar
-  }
+    Navbar,
+    AlertSuccess
+  },
+  props: ["success"]
 };
 </script>
 

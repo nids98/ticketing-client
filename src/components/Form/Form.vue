@@ -3,20 +3,7 @@
     <Navbar />
     <div class="container">
       <h5>Describe your issue</h5>
-      <div v-if="errors.length">
-        <div v-for="error in errors" v-bind:key="error" class="alert alert-danger">{{ error }}</div>
-      </div>
-      <div v-if="validationComplete">
-        <div class="alert alert-success" role="alert">
-          &nbsp; &nbsp; Ticket Raised successfully
-          <img
-            src
-            style="display:none;"
-            onerror="(function(el){ setTimeout(function(){ el.parentNode.parentNode.removeChild(el.parentNode); },10000 ); })(this);"
-          />
-        </div>
-      </div>
-
+      <AlertDanger v-bind:errors="errors" />
       <form @submit="validateAndSubmitForm" action method="post">
         <div class="form-group">
           <label for="category">Select category:</label>
@@ -58,10 +45,13 @@
 <script>
 import axios from "axios";
 import Navbar from "../Dashboard/Navbar";
+import AlertDanger from "./AlertDanger";
+
 export default {
   name: "Form",
   components: {
-    Navbar
+    Navbar,
+    AlertDanger
   },
   data() {
     return {
@@ -87,13 +77,6 @@ export default {
         this.errors.push("Description required");
       }
 
-      if (this.errors.length == 0) {
-        this.validationComplete = true;
-      } else {
-        this.validationComplete = false;
-      }
-
-      let self = this;
       e.preventDefault();
 
       var formData = {
@@ -110,7 +93,9 @@ export default {
           .then(res => {
             const status = JSON.parse(res.status);
             if (status == "201") {
-              self.$router.push("/");
+              this.validationComplete = true;
+              let success = this.validationComplete;
+              this.$router.replace({ name: "Landing", params: { success } });
             }
           });
       } catch (err) {
