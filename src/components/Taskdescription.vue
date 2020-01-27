@@ -71,9 +71,9 @@ export default {
     async updateStatus() {
       try {
         /* eslint-disable */
-        await axios.put(`http://localhost:8000/api/update/${this.task_id}`);
+        await axios.put(`/api/update/${this.task_id}`);
         const res = await axios.get(
-          `http://localhost:8000/api/task/desc/${this.tech_id}}/${this.task_id}`
+          `/api/task/desc/${this.tech_id}/${this.task_id}`
         );
 
         this.status = res.data[0].status;
@@ -103,7 +103,7 @@ export default {
       this.tech_id = uri[uri.length - 2];
       this.task_id = uri[uri.length - 1];
       const res = await axios.get(
-        `http://localhost:8000/api/task/desc/${this.tech_id}}/${this.task_id}`
+        `/api/task/desc/${this.tech_id}/${this.task_id}`
       );
       console.log(this.tech_id, this.task_id);
       this.task_type = res.data[0].cat_name;
@@ -140,8 +140,11 @@ export default {
   margin-right: 30vw;
 }
 .desc {
-  word-wrap: break-word;
+  
   text-align: "center";
+  word-wrap: break-word;
+  word-break: break-all;
+
   /* text-align: justify;  */
 }
 .container {

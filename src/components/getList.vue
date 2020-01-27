@@ -98,7 +98,7 @@ export default {
       if(this.techid!=null)
       {
         axios
-        .get(`http://localhost:8000/api/task/${this.techid}`)
+        .get(`/api/task/${this.techid}`)
         .then(response => (this.data = response.data));
         this.$refs.tech_id_input.value = this.techid;
         /* eslint-disable*/
