@@ -1,11 +1,11 @@
 <template>
 <div>
   <div id="bc">
-    <img class="logo" alt="Vue logo" src="../assets/OYO.png" width=100px>
+    <img class="logo" alt="Vue logo" src="../assets/OYO.png" width=100px > 
     <br/>
-    <input type="text" required placeholder="Enter Technician_id" id="a1" >
+    <input type="text" required placeholder="Enter Technician_id" id="a1"  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;">
     <!-- <button class="btn">Submit</button> -->
-    <input type="button" class="button button1" value="Submit" v-on:click="gettechid">
+    <input type="button" class="button button1" value="Submit" v-on:click="gettechid"  >
     <br/>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <getList v-bind:techid="techid" /> -->
