@@ -7,6 +7,7 @@
       <input
         type="text"
         required
+        ref="tech_id_input"
         placeholder="Enter Technician_id"
         id="a1"
         onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
@@ -91,12 +92,29 @@ export default {
       techid: 0
     };
   },
+  mounted()
+  {
+      this.techid = this.$route.params.tech_id;
+      if(this.techid!=null)
+      {
+        axios
+        .get(`http://localhost:8000/api/task/${this.techid}`)
+        .then(response => (this.data = response.data));
+        this.$refs.tech_id_input.value = this.techid;
+        /* eslint-disable*/
+        // console.log("fdgdgdfg")
+        // console.log(this.$refs.tech_id_input.value);
+        // console.log(this.$route.params.tech_id);
+      }
+      
+  },
   methods: {
     gettechid() {
       this.techid = document.getElementById("a1").value;
-      axios
-        .get(`http://localhost:8000/api/task/${this.techid}`)
-        .then(response => (this.data = response.data));
+      window.location = "/view-tasks/" + this.techid;
+      // axios
+      //   .get(`http://localhost:8000/api/task/${this.techid}`)
+      //   .then(response => (this.data = response.data));
     },
     onTaskClick(tid) {
       /* eslint-disable*/

@@ -31,6 +31,9 @@ const router = new VueRouter({
       path: '/view-tasks', component: getlist
     },
     {
+      path: '/view-tasks/:tech_id', component: getlist
+    },
+    {
       path: '/view-tasks/description/:tech_id/:task_id', component: Taskdescription
     },
     {
