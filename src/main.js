@@ -22,7 +22,7 @@ Vue.config.productionTip = false
 const router = new VueRouter({
   routes: [
     {
-      path: '/', component: Landing
+      path: '/', name: 'Landing', component: Landing, props: true
     },
     {
       path: '/raise-a-ticket', component: Form
