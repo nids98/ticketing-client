@@ -5,6 +5,7 @@ import Form from './components/Form/Form'
 import Landing from './components/Dashboard/Landing'
 import PageNotFound from './components/PageNotFound'
 import getlist from './components/getList'
+import Taskdescription from './components/Taskdescription.vue'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -28,6 +29,9 @@ const router = new VueRouter({
     },
     {
       path: '/view-tasks', component: getlist
+    },
+    {
+      path: '/view-tasks/description/:tech_id/:task_id', component: Taskdescription
     },
     {
       path: '*', component: PageNotFound

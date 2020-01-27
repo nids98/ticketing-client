@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar />
     <div id="bc">
       <img class="logo" alt="Vue logo" src="../assets/OYO.png" width="100px" />
       <br />
@@ -25,7 +26,11 @@
       :scroll="{ y: 240 }"
     >
       <template slot="Action" slot-scope="text,record">
-        <a-button type="primary" @click="onTaskClick(record.task_id)">Show Full Description</a-button>
+        <a-button
+          type="primary"
+          class="actionbutton"
+          @click="onTaskClick(record.task_id)"
+        >Show Full Description</a-button>
         <!-- <a href="/technician/tasklist/desc/{{this.data[record.key].task_id}}">Delete</a> -->
       </template>
     </a-table>
@@ -96,7 +101,7 @@ export default {
     onTaskClick(tid) {
       /* eslint-disable*/
 
-      window.location = "/technician/tasklist/desc/" + this.techid + "/" + tid;
+      window.location = "/view-tasks/description/" + this.techid + "/" + tid;
     }
   }
 };
@@ -152,5 +157,10 @@ export default {
   margin-right: 37vh;
   height: 25vh;
   width: 25vh;
+}
+.actionbutton,
+.actionbutton:hover {
+  background-color: red;
+  border: 1px solid red;
 }
 </style>
