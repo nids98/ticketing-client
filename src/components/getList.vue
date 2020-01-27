@@ -17,7 +17,13 @@
     :dataSource="data"
     :pagination="{ pageSize: 50 }"
     :scroll="{ y: 240 }"
-  />
+  >
+     <template slot="Action" slot-scope="text,record" >
+       <a-button type="primary" @click="onTaskClick(record.task_id)">Show Full Description</a-button>
+        <!-- <a href="/technician/tasklist/desc/{{this.data[record.key].task_id}}">Delete</a> -->
+      </template>
+  </a-table>
+
   </div>
 </template>
 
@@ -43,6 +49,12 @@ import axios from 'axios';
     {
       title: 'Created_at',
       dataIndex: 'created_at',
+      width:150,
+    },
+    {
+      title: 'Action',
+      dataIndex: 'Action',
+      scopedSlots: { customRender: 'Action' },
       width:150,
     },
 
@@ -76,6 +88,13 @@ import axios from 'axios';
              axios
             .get(`http://localhost:8000/api/task/${this.techid}`)
             .then(response => (this.data =response.data))
+      },
+      onTaskClick(tid){
+
+        /* eslint-disable*/
+      
+        window.location='/technician/tasklist/desc/'+ this.techid + '/'+tid;
+
       }
     }
      

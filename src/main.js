@@ -8,6 +8,8 @@ import Home from './components/Home'
 import About from './components/About'
 import Contact from './components/Contact'
 import getList from './components/getList.vue'
+import Taskdescription from './components/Taskdescription.vue'
+
 
 
 Vue.use(VueRouter)
@@ -45,6 +47,9 @@ const router = new VueRouter ({
     },
     {
       path: '/technician/tasklist', component : getList
+    },
+    {
+      path: '/technician/tasklist/desc/:tech_id/:task_id', component : Taskdescription
     },
   ],
   mode:"history"
