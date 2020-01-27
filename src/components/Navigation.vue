@@ -49,6 +49,7 @@ export default {
 .spacing {
   margin-right: 40px;
   margin-inline-start: 20px;
+
   
 }
 </style>
