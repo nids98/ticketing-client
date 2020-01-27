@@ -3,7 +3,7 @@
   <div id="bc">
     <img class="logo" alt="Vue logo" src="../assets/OYO.png" width=100px>
     <br/>
-    <input type="text" required placeholder="Enter Technician_id" id="a1" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" >
+    <input type="text" required placeholder="Enter Technician_id" id="a1" >
     <!-- <button class="btn">Submit</button> -->
     <input type="button" class="button button1" value="Submit" v-on:click="gettechid">
     <br/>
@@ -17,7 +17,13 @@
     :dataSource="data"
     :pagination="{ pageSize: 50 }"
     :scroll="{ y: 240 }"
-  />
+  >
+     <template slot="Action" slot-scope="text,record" >
+       <a-button type="primary" @click="onTaskClick(record.task_id)">Show Full Description</a-button>
+        <!-- <a href="/technician/tasklist/desc/{{this.data[record.key].task_id}}">Delete</a> -->
+      </template>
+  </a-table>
+
   </div>
 </template>
 
@@ -45,9 +51,13 @@ import axios from 'axios';
       dataIndex: 'created_at',
       width:150,
     },
-
+    {
+      title: 'Action',
+      dataIndex: 'Action',
+      scopedSlots: { customRender: 'Action' },
+      width:150,
+    },
   ];
-
   
 // //   for (let i = 0; i < 100; i++) {
 // //     data.push({
@@ -58,7 +68,6 @@ import axios from 'axios';
 // //       created_at:'2020-02-02',
 // //     });
 // //   }
-
   export default {
     // props: ["techid"],
     name:"getList",
@@ -72,21 +81,23 @@ import axios from 'axios';
     methods:{
         gettechid(){
           this.techid = document.getElementById("a1").value;
-
              axios
             .get(`http://localhost:8000/api/task/${this.techid}`)
             .then(response => (this.data =response.data))
+      },
+      onTaskClick(tid){
+        /* eslint-disable*/
+      
+        window.location='/technician/tasklist/desc/'+ this.techid + '/'+tid;
       }
     }
      
     
 };
  
-
 </script>
 
 <style scoped>
-
     #bc {
       font-family: 'Avenir', Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -120,22 +131,18 @@ import axios from 'axios';
       width:10vw;
       height:5vh;
     }
-
     .button1:hover {
       background-color: #4CAF50;
       color: white;
     }
-
     #a1{
       width:20vw;
       height:5vh;
     }
-
     .logo{
       margin-left:42vh;
       margin-right:37vh;
       height:25vh;
       width:25vh;
     }
-
 </style>
