@@ -13,7 +13,13 @@
         onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
       />
       <!-- <button class="btn">Submit</button> -->
-      <input type="button" class="button button1" value="Submit" v-on:click="gettechid" />
+      <input
+        type="button"
+        class="button button1"
+        value="Submit"
+        v-on:click="gettechid"
+        id="submit_button"
+      />
       <br />
       <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
       <!-- <getList v-bind:techid="techid" /> -->
@@ -92,21 +98,25 @@ export default {
       techid: 0
     };
   },
-  mounted()
-  {
-      this.techid = this.$route.params.tech_id;
-      if(this.techid!=null)
-      {
-        axios
+  mounted() {
+    document.getElementById("a1").addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        document.getElementById("submit_button").click();
+      }
+    });
+
+    this.techid = this.$route.params.tech_id;
+    if (this.techid != null) {
+      axios
         .get(`http://localhost:8000/api/task/${this.techid}`)
         .then(response => (this.data = response.data));
-        this.$refs.tech_id_input.value = this.techid;
-        /* eslint-disable*/
-        // console.log("fdgdgdfg")
-        // console.log(this.$refs.tech_id_input.value);
-        // console.log(this.$route.params.tech_id);
-      }
-      
+      this.$refs.tech_id_input.value = this.techid;
+      /* eslint-disable*/
+      // console.log("fdgdgdfg")
+      // console.log(this.$refs.tech_id_input.value);
+      // console.log(this.$route.params.tech_id);
+    }
   },
   methods: {
     gettechid() {
