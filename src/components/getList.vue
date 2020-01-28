@@ -109,8 +109,18 @@ export default {
     this.techid = this.$route.params.tech_id;
     if (this.techid != null) {
       axios
-        .get(`http://localhost:8000/api/task/${this.techid}`)
-        .then(response => (this.data = response.data));
+        .get(`http://localhost:8000/api/task/${this.techid}`, {
+          headers: { "x-auth-token": "nidhi" }
+        })
+        .then(response => {
+          /*eslint-disable*/
+          console.log(response.data.error !== undefined);
+          if (response.data.error !== undefined) {
+            window.location = "/401";
+          } else {
+            this.data = response.data;
+          }
+        });
       this.$refs.tech_id_input.value = this.techid;
       /* eslint-disable*/
       // console.log("fdgdgdfg")
