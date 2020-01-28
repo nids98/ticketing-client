@@ -6,6 +6,7 @@ import Landing from './components/Dashboard/Landing'
 import PageNotFound from './components/PageNotFound'
 import getlist from './components/getList'
 import Taskdescription from './components/Taskdescription.vue'
+import Not from './components/401.vue'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -28,13 +29,16 @@ const router = new VueRouter({
       path: '/raise-a-ticket', component: Form
     },
     {
-      path: '/view-tasks', component: getlist
+      path: '/task', component: getlist
     },
     {
-      path: '/view-tasks/:tech_id', component: getlist
+      path: '/task?tech_id=:tech_id', component: getlist
     },
     {
-      path: '/view-tasks/description/:tech_id/:task_id', component: Taskdescription
+      path: '/task/:task_id', component: Taskdescription
+    },
+    {
+      path: '/401', component: Not
     },
     {
       path: '*', component: PageNotFound

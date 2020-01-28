@@ -18,7 +18,7 @@
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
             <b-nav-item href="/raise-a-ticket" v-bind:class="{ active: isForm }">Raise a Ticket</b-nav-item>
-            <b-nav-item href="/view-tasks" v-bind:class="{ active: isTask }">View Taks</b-nav-item>
+            <b-nav-item href="/task" v-bind:class="{ active: isTask }">View Taks</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
@@ -32,7 +32,9 @@ export default {
   data() {
     return {
       isForm: this.$route.path === "/raise-a-ticket",
-      isTask: this.$route.path === "/view-tasks"
+      isTask:
+        this.$route.path === "/view-tasks" ||
+        this.$route.path === "/view-tasks.+"
     };
   }
 };

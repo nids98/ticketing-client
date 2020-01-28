@@ -13,7 +13,13 @@
         onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
       />
       <!-- <button class="btn">Submit</button> -->
-      <input type="button" class="button button1" value="Submit" v-on:click="gettechid" />
+      <input
+        type="button"
+        class="button button1"
+        value="Submit"
+        v-on:click="gettechid"
+        id="submit_button"
+      />
       <br />
       <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
       <!-- <getList v-bind:techid="techid" /> -->
@@ -92,26 +98,46 @@ export default {
       techid: 0
     };
   },
-  mounted()
-  {
-      this.techid = this.$route.params.tech_id;
-      if(this.techid!=null)
-      {
-        axios
-        .get(`/api/task?=${this.techid}`)
-        .then(response => (this.data = response.data));
-        this.$refs.tech_id_input.value = this.techid;
-        /* eslint-disable*/
-        // console.log("fdgdgdfg")
-        // console.log(this.$refs.tech_id_input.value);
-        // console.log(this.$route.params.tech_id);
+  mounted() {
+    document.getElementById("a1").addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        document.getElementById("submit_button").click();
       }
-      
+    });
+
+    this.techid = this.$route.query.tech_id;
+    /*eslint-disable*/
+    console.log(this.$route.params);
+    if (this.techid != null) {
+      const params ={
+        tech_id:this.techid
+      };
+      axios
+        .get(`/api/task`, {
+          params,
+          headers: { "x-auth-token": "nidhi" }
+        })
+        .then(response => {
+          /*eslint-disable*/
+          //console.log(response.data.error !== undefined);
+          if (response.data.error !== undefined) {
+            window.location = "/401";
+          } else {
+            this.data = response.data;
+          }
+        });
+      this.$refs.tech_id_input.value = this.techid;
+      /* eslint-disable*/
+      // console.log("fdgdgdfg")
+      // console.log(this.$refs.tech_id_input.value);
+      // console.log(this.$route.params.tech_id);
+    }
   },
   methods: {
     gettechid() {
       this.techid = document.getElementById("a1").value;
-      window.location = "/view-tasks/" + this.techid;
+      window.location = "/task?tech_id=" + this.techid;
       // axios
       //   .get(`http://localhost:8000/api/task/${this.techid}`)
       //   .then(response => (this.data = response.data));
@@ -119,7 +145,7 @@ export default {
     onTaskClick(tid) {
       /* eslint-disable*/
 
-      window.location = "/view-tasks/description/" + this.techid + "/" + tid;
+      window.location = "/task/" + tid;
     }
   }
 };
