@@ -2,7 +2,7 @@
   <div>
     <Navbar />
     <div class="center">
-      <!-- <÷img src="../assets/pagenotfound.gif" alt="page not found" id="error" /> -->
+      <img src="../assets/notauthorized.gif" alt="page not found" id="error" />
       <h2>Error 401: Not authorized</h2>
     </div>
   </div>

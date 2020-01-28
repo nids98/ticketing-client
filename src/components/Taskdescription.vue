@@ -73,9 +73,7 @@ export default {
       try {
         /* eslint-disable */
         await axios.put(`/api/task/${this.task_id}`);
-        const res = await axios.get(
-          `/api/task/${this.task_id}`
-        );
+        const res = await axios.get(`/api/task/${this.task_id}`);
 
         this.status = res.data[0].status;
         this.updated_at = res.data[0].updated_at;
@@ -93,9 +91,9 @@ export default {
         }
 
         if (this.update_name === "Completed on") {
-        document.getElementById("disable").disabled = true;
-        document.getElementById("disable").style.cursor = "not-allowed";
-    }
+          document.getElementById("disable").disabled = true;
+          document.getElementById("disable").style.cursor = "not-allowed";
+        }
       } catch (e) {
         //kdjsbv
       }
@@ -108,14 +106,12 @@ export default {
       let uri = window.location.href.split("/");
       //this.tech_id = uri[uri.length - 2];
       this.task_id = uri[uri.length - 1];
-      const res = await axios.get(
-        `/api/task/${this.task_id}`
-      );
+      const res = await axios.get(`/api/task/${this.task_id}`);
       console.log(this.tech_id, this.task_id);
       this.task_type = res.data[0].cat_name;
       this.desc = res.data[0].desc;
       this.status = res.data[0].status;
-      this.tech_id=res.data[0].tech_id;
+      this.tech_id = res.data[0].tech_id;
       this.updated_at = res.data[0].updated_at;
       this.created_at = res.data[0].created_at;
       this.tech_name = res.data[0].tech_name;
@@ -131,11 +127,14 @@ export default {
         this.update_name = "Completed on";
         this.button_name = "Already Completed";
       }
+      if (this.update_name === "Completed on") {
+        document.getElementById("disable").disabled = true;
+        document.getElementById("disable").style.cursor = "not-allowed";
+      }
       //alert(this.button_name);
     } catch (e) {
       //console.log(e);
     }
-    
   }
 };
 </script>
@@ -148,7 +147,6 @@ export default {
   margin-right: 30vw;
 }
 .desc {
-  
   text-align: "center";
   word-wrap: break-word;
   word-break: break-all;

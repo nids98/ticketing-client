@@ -7,7 +7,7 @@
       </div>
       <img src="../../assets/dashboard.gif" alt="dashboard" />
       <h2 class="center">Welcome to Ticketing</h2>
-      <p class="center">User complaint registration and workforce management system</p>
+      <p class="center">User complaint registration and technician's task management system</p>
     </div>
   </div>
 </template>

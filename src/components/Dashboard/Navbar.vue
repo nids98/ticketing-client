@@ -32,9 +32,7 @@ export default {
   data() {
     return {
       isForm: this.$route.path === "/raise-a-ticket",
-      isTask:
-        this.$route.path === "/view-tasks" ||
-        this.$route.path === "/view-tasks.+"
+      isTask: this.$route.path === "/task" || this.$route.path === "/task.+"
     };
   }
 };
