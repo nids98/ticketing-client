@@ -43,6 +43,7 @@
       @click="updateStatus"
       type="button"
       class="btn btn-danger btn-lg btn-block"
+      id="disable"
     >{{(this.button_name)}}</button>
   </div>
 </template>
@@ -127,6 +128,10 @@ export default {
       //alert(this.button_name);
     } catch (e) {
       //console.log(e);
+    }
+    if (this.update_name === "Completed on") {
+      document.getElementById("disable").disabled = true;
+      document.getElementById("disable").style.cursor = "not-allowed";
     }
   }
 };
