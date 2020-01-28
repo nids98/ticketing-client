@@ -88,7 +88,7 @@ export default {
 
       try {
         await axios
-          .post("/api/task/create", formData)
+          .post("/api/task", formData)
           /*eslint-disable*/
           .then(res => {
             const status = JSON.parse(res.status);
